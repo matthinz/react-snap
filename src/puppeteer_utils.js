@@ -251,8 +251,9 @@ const crawl = async opt => {
         shuttingDown = true;
       }
     } else {
-      // this message creates a lot of noise
-      // console.log(`🚧  skipping (${processed + 1}/${enqued}) ${route}`);
+      // TEMP Work around "Cannot write to stream after nil" issue by including an `await` in this `else` branch
+      await Promise.resolve();
+      console.log(`🚧  skipping (${processed + 1}/${enqued}) ${route}`);
     }
     processed++;
     if (enqued === processed) {
